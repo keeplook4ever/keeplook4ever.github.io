@@ -5,12 +5,12 @@ tags = ["Hugo", "PaperMod", "GitHub Pages", "DevOps", "静态博客"]
 categories = ["Tech Notes"]
 summary = "完整指南：从 Hugo 初始化到 GitHub Actions 自动部署，打造一个优雅、干净、自动化的个人博客。"
 showToc = true
-TocOpen = true
+TocOpen = false
 draft = false
-cover:
-  image: "https://raw.githubusercontent.com/adityatelange/hugo-PaperMod/master/images/feature.webp"
-  alt: "Hugo + PaperMod + GitHub Actions"
-  caption: "Hugo + PaperMod 自动部署实战指南"
+[cover]
+  image = "/images/hugo-papermod-cover.jpg"
+  alt = "Hugo + PaperMod + GitHub Actions"
+  caption = "Hugo + PaperMod 自动部署实战指南"
 +++
 
 > 🌱 本文记录了从本地调试、主题导入到 GitHub Actions 自动部署的一次完整实践。  
@@ -30,11 +30,18 @@ cover:
 
 最终的 Hugo 博客项目结构如下：
 
+```shell
 .
 ├── _vendor
+│   ├── github.com
+│   └── modules.txt
 ├── archetypes
+│   └── default.md
 ├── assets
 ├── content
+│   ├── _index.md
+│   ├── about
+│   └── posts
 ├── data
 ├── go.mod
 ├── go.sum
@@ -42,9 +49,25 @@ cover:
 ├── i18n
 ├── layouts
 ├── public
+│   ├── 2025
+│   ├── 404.html
+│   ├── about
+│   ├── assets
+│   ├── categories
+│   ├── index.html
+│   ├── index.json
+│   ├── index.xml
+│   ├── posts
+│   ├── robots.txt
+│   ├── sitemap.xml
+│   └── tags
 ├── scripts
+│   └── build.sh
 ├── static
+│   └── images
 └── themes
+    └── PaperMod
+```
 
 ----
 
