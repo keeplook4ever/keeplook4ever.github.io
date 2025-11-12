@@ -2,11 +2,6 @@ baseURL = "https://keeplook4ever.github.io/"
 title = "Lennon — Blog"
 languageCode = "en-us"
 enableRobotsTXT = true
-
-# Hugo Modules: import PaperMod
-#[module]
-#  [[module.imports]]
-#    path = "github.com/adityatelange/hugo-PaperMod"
 theme = "PaperMod"
 
 [pagination]
@@ -15,42 +10,56 @@ theme = "PaperMod"
 [params]
   env = "production"
   title = "Lennon — Blog"
-  description = "Security, DevSecOps, SDLC, IAM, Notes"
-  keywords = ["security", "devsecops", "sdlc", "notes"]
+  description = "Security, Humanity, Runner, Marathon, Music, Notes"
+  keywords = ["security", "devsecops", "sdlc", "notes", "humanity"]
   author = "Lennon"
   defaultTheme = "auto"
-  ShowReadingTime = true
+
+  # 注意：PaperMod 参数名区分大小写，建议统一用小写的 showReadingTime
+  showReadingTime = true
   ShowShareButtons = true
   ShowCodeCopyButtons = true
   ShowPostNavLinks = true
 
-  # Home info block
-  [params.homeInfoParams]
-    Title = "Hi, I'm Lennon"
-    Content = "Security engineers who focus on both humans and AI"
+  # ✅ 正确的 profileMode 写法（是一个表，不是布尔）
+  [params.profileMode]
+    enabled = true
+    title = "👋 Hi, I'm Lennon"
+    subtitle = "Security engineer | Curious soul exploring technology and humanity / 科技与人文并重"
+    # 可选：
+    # imageUrl = "images/profile.jpg"
+    # imageTitle = "Lennon"
+    # imageWidth = 180
+    # imageHeight = 180
+    buttons = [
+        { name = "About / 关于我", url = "/about/"}, 
+	{ name = "Posts / 文章", url = "/posts/" }
+    ]
 
-  # Social icons（可按需增减 / edit as needed）
+
+  # 社交
   [[params.socialIcons]]
     name = "github"
     url = "https://github.com/keeplook4ever"
-  [[params.socialIcons]]
-    name = "rss"
-    url = "index.xml"
 
-  # --- Giscus (评论) 占位 / placeholders ---
-  giscusEnabled = true
-  giscusRepo = "keeplook4ever/keeplook4ever.github.io"
-  giscusRepoId = "<REPO_ID>"
-  giscusCategory = "General"
-  giscusCategoryId = "<CATEGORY_ID>"
-  giscusMapping = "pathname"
-  giscusReactionsEnabled = "1"
-  giscusEmitMetadata = "0"
-  giscusTheme = "preferred_color_scheme"
+  # （可选）评论：PaperMod 推荐用嵌套表
+  # 开启站点级评论总开关（可用在文章 front matter 里覆盖）
+  comments = true
+
+  # Giscus（示例；请用你的真实 repoId / categoryId）
+  [params.giscus]
+    repo = "keeplook4ever/keeplook4ever.github.io"
+    repoID = "<REPO_ID>"
+    category = "General"
+    categoryID = "<CATEGORY_ID>"
+    mapping = "pathname"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    theme = "preferred_color_scheme"
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
 
-# 生成更干净的 URL（可选）/ pretty URLs (optional)
 [permalinks]
   posts = "/:year/:month/:slug/"
+

@@ -1,0 +1,53 @@
+baseURL = "https://keeplook4ever.github.io/"
+title = "Lennon — Blog"
+languageCode = "en-us"
+enableRobotsTXT = true
+
+# Hugo Modules: import PaperMod
+#[module]
+#  [[module.imports]]
+#    path = "github.com/adityatelange/hugo-PaperMod"
+theme = "PaperMod"
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  env = "production"
+  title = "Lennon — Blog"
+  description = "Security, DevSecOps, SDLC, IAM, Notes"
+  keywords = ["security", "devsecops", "sdlc", "notes"]
+  author = "Lennon"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowCodeCopyButtons = true
+  ShowPostNavLinks = true
+  showReadingTime = false
+  profileMode = true
+  profileModeTitle = "👋 Hi, I'm Lennon"
+  profileModeSubTitle = "Security engineer | Curious soul exploring technology and humanity"
+
+
+  # Social icons（可按需增减 / edit as needed）
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/keeplook4ever"
+
+  # --- Giscus (评论) 占位 / placeholders ---
+  giscusEnabled = true
+  giscusRepo = "keeplook4ever/keeplook4ever.github.io"
+  giscusRepoId = "<REPO_ID>"
+  giscusCategory = "General"
+  giscusCategoryId = "<CATEGORY_ID>"
+  giscusMapping = "pathname"
+  giscusReactionsEnabled = "1"
+  giscusEmitMetadata = "0"
+  giscusTheme = "preferred_color_scheme"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# 生成更干净的 URL（可选）/ pretty URLs (optional)
+[permalinks]
+  posts = "/:year/:month/:slug/"
