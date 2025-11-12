@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: true
+          submodules: false   # ！！！！一定注意
           fetch-depth: 0
 
       - name: Setup Hugo
@@ -30,8 +30,26 @@ jobs:
           hugo-version: '0.147.4'
           extended: true
 
+      - name: Show repo tree (content)
+        run: |
+          echo "== List content =="
+          ls -lah content || true
+          echo "== Show _index.md =="
+          sed -n '1,80p' content/_index.md || true
+          echo "== Show about.md =="
+          sed -n '1,80p' content/about.md || true
+
+      - name: Hugo lists
+        run: |
+          hugo env
+          echo "== hugo list pages =="
+          hugo list pages || true
+          echo "== hugo list drafts =="
+          hugo list drafts || true
+
+
       - name: Build site
-        run: hugo --minify --cleanDestinationDir --baseURL "https://keeplook4ever.github.io/"
+        run: hugo --minify --cleanDestinationDir -D --baseURL "https://keeplook4ever.github.io/"
 
       # 🔎 调试用：查看构建结果
       - name: Show build output (for debug)
