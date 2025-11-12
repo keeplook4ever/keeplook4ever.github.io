@@ -114,7 +114,7 @@ enableRobotsTXT = true
     ]
 ```
 
-3️⃣ 拉取并 vendor 主题
+### 3️⃣ 拉取并 vendor 主题
 
 ```
 hugo mod get github.com/adityatelange/hugo-PaperMod
@@ -241,6 +241,25 @@ git commit -m "chore: ignore build output"
 git push
 
 ```
+
+#### 打开Giscus评论
+
+利用Giscus配置博客文章可评论 (网络可搜详细教程)
+
+```shell
+  comments = true
+  giscus_enabled = true
+  giscus_repo = "keeplook4ever/keeplook4ever.github.io"
+  giscus_repo_id = "xxx"
+  giscus_category = "General"
+  giscus_category_id = "xxxx"
+  giscus_mapping = "pathname"
+  giscus_reactions_enabled = "1"
+  giscus_emit_metadata = "0"
+  giscus_theme = "preferred_color_scheme"
+```
+
+
 
 ----
 
