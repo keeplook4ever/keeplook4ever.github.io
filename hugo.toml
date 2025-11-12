@@ -4,6 +4,12 @@ languageCode = "en-us"
 enableRobotsTXT = true
 theme = "PaperMod"
 
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 10
+
+
 [pagination]
   pagerSize = 10
 
