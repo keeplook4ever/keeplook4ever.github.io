@@ -7,7 +7,6 @@ summary = "完整指南：从 Hugo 初始化到 GitHub Actions 自动部署，�
 showToc = true
 TocOpen = false
 draft = false
-comments = true
 [cover]
   image = "/images/hugo-papermod-cover.jpg"
   alt = "Hugo + PaperMod + GitHub Actions"
