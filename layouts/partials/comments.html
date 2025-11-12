@@ -1,17 +1,103 @@
-{{ if or .Params.comments site.Params.comments }}
-  <div id="comments" class="post-comments">
-    <script src="https://giscus.app/client.js"
-            data-repo="{{ site.Params.giscus_repo }}"
-            data-repo-id="{{ site.Params.giscus_repo_id }}"
-            data-category="{{ site.Params.giscus_category }}"
-            data-category-id="{{ site.Params.giscus_category_id }}"
-            data-mapping="{{ site.Params.giscus_mapping }}"
-            data-reactions-enabled="{{ site.Params.giscus_reactions_enabled }}"
-            data-emit-metadata="{{ site.Params.giscus_emit_metadata }}"
-            data-theme="{{ site.Params.giscus_theme }}"
-            crossorigin="anonymous"
-            async>
-    </script>
-  </div>
-{{ end }}
+{{/* layouts/partials/comments.html  | PaperMod 风格 + Giscus + 暗黑模式自适应
+     使用方式：
+       1) hugo.toml:
+          [params]
+            comments = true
+            giscus_repo = "keeplook4ever/keeplook4ever.github.io"
+            giscus_repo_id = "R_kgDOQPGFxA"
+            giscus_category = "General"
+            giscus_category_id = "DIC_kwDOQPGFxM4Cxti-"
+            giscus_mapping = "pathname"
+            giscus_reactions_enabled = "1"
+            giscus_emit_metadata = "0"
+            giscus_theme = "preferred_color_scheme" # 初始主题，后续会跟随站点切换
+       2) 文章 front matter 可用 comments=true 单独开关
+*/}}
+
+{{- $enabled := or .Params.comments site.Params.comments -}}
+{{- if $enabled }}
+
+<div id="comments" class="post-comments mt-12">
+  {{/* —— 动态主题同步（先算当前主题，后续监听切换） —— */}}
+  <script>
+    (function () {
+      // 获取当前主题：优先本地存储，其次系统偏好
+      function currentTheme() {
+        try {
+          const t = localStorage.getItem('pref-theme');
+          if (t === 'dark' || t === 'light') return t;
+        } catch (e) {}
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      // 向 giscus iframe 发送主题更新
+      function setGiscusTheme(theme) {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe || !iframe.contentWindow) return;
+        iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app');
+      }
+
+      // 站点主题切换按钮（PaperMod 常用 id）
+      function bindThemeToggles() {
+        const candidates = new Set([
+          document.getElementById('theme-toggle'),
+          ...document.querySelectorAll('[data-theme-toggle]')
+        ]);
+        candidates.forEach(btn => {
+          if (!btn) return;
+          btn.addEventListener('click', () => {
+            // 等待 PaperMod 切换完成后同步 giscus
+            setTimeout(() => setGiscusTheme(currentTheme()), 60);
+          });
+        });
+      }
+
+      // 监听系统主题变化
+      try {
+        window.matchMedia('(prefers-color-scheme: dark)')
+          .addEventListener('change', () => setGiscusTheme(currentTheme()));
+      } catch (e) {}
+
+      // 等 giscus iframe 出现后做一次初始同步
+      const mo = new MutationObserver(() => setGiscusTheme(currentTheme()));
+      mo.observe(document.body, { childList: true, subtree: true });
+
+      // 绑定切换按钮
+      document.addEventListener('DOMContentLoaded', bindThemeToggles);
+    })();
+  </script>
+
+  {{/* —— Giscus 脚本：参数来自 hugo.toml 的 [params] —— */}}
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ site.Params.giscus_repo }}"
+          data-repo-id="{{ site.Params.giscus_repo_id }}"
+          data-category="{{ site.Params.giscus_category }}"
+          data-category-id="{{ site.Params.giscus_category_id }}"
+          data-mapping="{{ site.Params.giscus_mapping | default "pathname" }}"
+          data-reactions-enabled="{{ site.Params.giscus_reactions_enabled | default "1" }}"
+          data-emit-metadata="{{ site.Params.giscus_emit_metadata | default "0" }}"
+          data-input-position="bottom"
+          data-theme="{{ site.Params.giscus_theme | default "preferred_color_scheme" }}"
+          data-lang="{{ site.Language.Lang | default "en" }}"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+  <noscript>
+    <!-- zh -->
+    想要查看评论，请启用浏览器的 JavaScript。
+    <!-- en -->
+    Please enable JavaScript to view the comments powered by Giscus.
+  </noscript>
+</div>
+
+<style>
+  /* PaperMod 风格的轻量样式增强 | Lightweight styling to match PaperMod */
+  #comments.post-comments { margin-top: 2.5rem; }
+  #comments .giscus, #comments iframe.giscus-frame { width: 100%; }
+  /* 保持与主题间距一致 | keep spacing consistent */
+  .mt-12 { margin-top: 3rem; }
+</style>
+
+{{- end }}
 
