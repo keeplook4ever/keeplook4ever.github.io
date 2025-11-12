@@ -35,15 +35,15 @@ defaultContentLanguage = "en"
   ShowCodeCopyButtons = true
   ShowPostNavLinks = true
 
-  giscusEnabled = true
-  giscusRepo = "keeplook4ever/keeplook4ever.github.io"
-  giscusRepoId = "R_kgDOQPGFxA"          # 从 giscus.app 获取
-  giscusCategory = "General"
-  giscusCategoryId = "DIC_kwDOQPGFxM4Cxti-"  # 从 giscus.app 获取
-  giscusMapping = "pathname"
-  giscusReactionsEnabled = "1"
-  giscusEmitMetadata = "0"
-  giscusTheme = "preferred_color_scheme"
+  giscus_enabled = true
+  giscus_repo = "keeplook4ever/keeplook4ever.github.io"
+  giscus_repo_id = "R_kgDOQPGFxA"
+  giscus_category = "General"
+  giscus_category_id = "DIC_kwDOQPGFxM4Cxti-"
+  giscus_mapping = "pathname"
+  giscus_reactions_enabled = "1"
+  giscus_emit_metadata = "0"
+  giscus_theme = "preferred_color_scheme"
 
   # profileMode 与 homeInfoParams 二选一；推荐 profileMode
   [params.profileMode]
