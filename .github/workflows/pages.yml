@@ -42,11 +42,15 @@ jobs:
       - name: Hugo lists
         run: |
           hugo env
-          echo "== hugo list pages =="
-          hugo list pages || true
+          echo "== hugo list all =="
+          hugo list all || true
+          echo "== hugo list published =="
+          hugo list published || true
           echo "== hugo list drafts =="
           hugo list drafts || true
-
+          echo "== hugo list future =="
+          hugo list future || true
+ 
 
       - name: Build site
         run: hugo --minify --cleanDestinationDir -D --baseURL "https://keeplook4ever.github.io/"
