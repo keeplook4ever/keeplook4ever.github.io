@@ -30,34 +30,18 @@ jobs:
           hugo-version: '0.147.4'
           extended: true
 
-      - name: Init Hugo Modules (if missing)
-        run: |
-          test -f go.mod || hugo mod init github.com/keeplook4ever/keeplook4ever.github.io
-
-      # ✅ 新增：拉取并 vendor 主题模块
+      # ✅ 确保 PaperMod 模块被正确拉取
       - name: Prepare Hugo Modules
         run: |
           hugo mod clean
           hugo mod get github.com/adityatelange/hugo-PaperMod
           hugo mod vendor
 
-      - name: Show repo tree (content)
-        run: |
-          ls -lah content || true
-          sed -n '1,80p' content/about/index.md || true
-
+      # ✅ 构建站点
       - name: Build site
         run: hugo --minify --cleanDestinationDir --baseURL "https://keeplook4ever.github.io/"
 
-      - name: Show build output (for debug)
-        run: |
-          ls -lah public || true
-          ls -lah public/about || true
-
-      - name: Guard (ensure /about/index.html exists)
-        run: |
-          test -f public/about/index.html || (echo "ERROR: public/about/index.html not found"; exit 1)
-
+      # ✅ 上传生成内容
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
