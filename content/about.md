@@ -1,6 +1,7 @@
 ---
 title: "About / 关于我"
 url: "/about/"
+draft = false
 ---
 
 ## 🌿 About Me / 关于我  
