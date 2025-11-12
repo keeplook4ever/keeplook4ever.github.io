@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: false
+          submodules: false       
           fetch-depth: 0
 
       - name: Setup Hugo
@@ -30,11 +30,10 @@ jobs:
           hugo-version: '0.147.4'
           extended: true
 
-      - name: Build
+      - name: Build site
         run: hugo --minify --cleanDestinationDir --baseURL "https://keeplook4ever.github.io/"
 
-
-      # 🔎 调试：确认 /about/index.html 存在
+      # 🔎 调试用：查看构建结果
       - name: Show build output (for debug)
         run: |
           echo "== List public root =="
@@ -42,10 +41,12 @@ jobs:
           echo "== List public/about =="
           ls -lah public/about || true
 
+      # ✅ 确保 about 页面存在
       - name: Guard (ensure /about/index.html exists)
         run: |
           test -f public/about/index.html || (echo "ERROR: public/about/index.html not found"; exit 1)
 
+      # 📦 上传静态文件工件
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
