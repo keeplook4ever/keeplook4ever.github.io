@@ -9,16 +9,16 @@ draft = false
 I’m a security engineer with eight years of experience —  
 a technologist by profession, but also a seeker of meaning beyond code.
 
-Technology, music, literature, film, history, and sports  
+Technology, sports, music, film, history, and literature
 are how I explore the world and understand myself.
 
 Here, I share thoughts on security and technology,  
 as well as reflections on the beauty and complexity of life —  
 a melody, a marathon, a film, or an honest conversation.
 
-Welcome to my space.  
-May we all find the work we love,  
-and keep our curiosity alive as we journey into the unknown.
+Welcome to my world.
+May we all find a career we truly love,
+and keep our curiosity and courage alive on the road toward the unknown.
 
 ---
 
