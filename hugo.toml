@@ -35,6 +35,7 @@ defaultContentLanguage = "en"
   ShowCodeCopyButtons = true
   ShowPostNavLinks = true
 
+  comments = true
   giscus_enabled = true
   giscus_repo = "keeplook4ever/keeplook4ever.github.io"
   giscus_repo_id = "R_kgDOQPGFxA"

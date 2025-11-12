@@ -1,0 +1,17 @@
+{{ if or .Params.comments site.Params.comments }}
+  <div id="comments" class="post-comments">
+    <script src="https://giscus.app/client.js"
+            data-repo="{{ site.Params.giscus_repo }}"
+            data-repo-id="{{ site.Params.giscus_repo_id }}"
+            data-category="{{ site.Params.giscus_category }}"
+            data-category-id="{{ site.Params.giscus_category_id }}"
+            data-mapping="{{ site.Params.giscus_mapping }}"
+            data-reactions-enabled="{{ site.Params.giscus_reactions_enabled }}"
+            data-emit-metadata="{{ site.Params.giscus_emit_metadata }}"
+            data-theme="{{ site.Params.giscus_theme }}"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+{{ end }}
+
