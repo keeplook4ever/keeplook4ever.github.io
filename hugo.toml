@@ -1,11 +1,14 @@
 baseURL = "https://keeplook4ever.github.io/"
 title = "Lennon — Blog"
 languageCode = "en-us"
-theme = "PaperMod"
 enableRobotsTXT = true
 
 # 如果你启用多语言，这里可以扩展；现在单语言
 defaultContentLanguage = "en"
+
+[module]
+  [[module.imports]]
+    path = "github.com/adityatelange/hugo-PaperMod"
 
 # 输出设置
 [outputs]
