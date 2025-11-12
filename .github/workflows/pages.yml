@@ -47,7 +47,7 @@ jobs:
           sed -n '1,80p' content/about/index.md || true
 
       - name: Build site
-        run: hugo --minify --cleanDestinationDir --baseURL "https://keeplook4ever.github.io/" -v --printPathWarnings
+        run: hugo --minify --cleanDestinationDir --baseURL "https://keeplook4ever.github.io/"
 
       - name: Show build output (for debug)
         run: |
